@@ -30,12 +30,12 @@ public class ReplyBoardController {
 	@RequestMapping("/rInsert")
 	public String rInsert(ReplyBoard rb, Model model) {
 		rbs.insert(rb);
-		return "redirect:/rInsert/num/"+rb.getBno();
+		return "redirect:/rlist/num/"+rb.getBno();
 	}
 	@RequestMapping("/rDelete")
 	public String rDelete(ReplyBoard rb, Model model) {
 		rbs.delete(rb.getRno());
-		return "redirect:/rInsert/num/"+rb.getBno();
+		return "redirect:/rlist/num/"+rb.getBno();
 	}
 	@RequestMapping("/rUpdate")
 	public String rUpdate(ReplyBoard rb, Model model) {

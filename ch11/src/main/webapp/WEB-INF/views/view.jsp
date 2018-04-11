@@ -64,7 +64,7 @@
 		<a class="btn btn-default" href="${path}/list/pageNum/${pageNum }">목록</a>
 		<p>
 		<form name="frm" id="frm">
-			<input type="hidden" name="replayer" value="${board.writer }">
+			<input type="hidden" name="replyer" value="${board.writer }">
 			<input type="hidden" name="bno" value="${board.num }"> 댓글 :
 			<textarea rows="3" cols="50" name="replytext"
 				placeholder="댓글을 입력하세요."></textarea>

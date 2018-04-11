@@ -14,14 +14,27 @@
 			$('#rlist').html(data);
 		});
 	}
-	function rUpdate(rno, bno){
+	function rUpdate(rno, bno) {
 		var txt = $('#td_'+rno).text();
 		$('#td_'+rno).html(
-				'<textarea name = "replytext" cols="30" rows="3" id="rt">' 
-				+txt+'</textarea>');
+		  '<textarea name="replytext" cols="30" rows="3" id="rt">'
+		  +txt+'</textarea>');
 		$('#btn_'+rno).html(
-			'<input type = "button" value="확인" onlick'		
-		)
+			'<input type="button" value="확인" onclick="up('+
+				bno+','+rno+
+			')"><input type="button" value="취소" onclick="lst('+
+					bno+')">'); 
+	}
+	function lst(bno) {
+		$('#rlist').load('${path}/rlist/num/'+bno);
+	}
+	function up(bno,rno) {
+		var replytext = $('#rt').val();
+		var frmData="rno="+rno+"&bno="+bno+"&replytext="+replytext;
+		$.post('${path}/rUpdate',frmData, function(data) {
+			alert("수정 되었습니다");
+			$('#rlist').html(data);
+		});
 		
 	}
 </script>
@@ -45,13 +58,15 @@
 					</c:if>
 					<c:if test="${rb.del !='y' }">
 						<td>${rb.replyer }</td>
-						<td>${rb.replytext}</td>
+						<td id="td_${rb.rno}">${rb.replytext}</td>
 						<td>${rb.updatedate}</td>
 						<!-- 실제는 로그인 한 아이디와 댓글 아이디와 비교 하는게 맞다. -->
-						<td id="td_${rb.rno}">
-							<c:if test="${rb.replyer==board.writer }">
-								<input type="button" value="수정" onclick="rUpdate(${rb.rno},${rb.bno })">
-								<input type="button" value="삭제" onclick="rDelete(${rb.rno},${rb.bno })">
+						<td id="td_${rb.rno}"><c:if
+								test="${rb.replyer==board.writer }">
+								<input type="button" value="수정"
+									onclick="rUpdate(${rb.rno},${rb.bno })">
+								<input type="button" value="삭제"
+									onclick="rDelete(${rb.rno},${rb.bno })">
 							</c:if></td>
 					</c:if>
 				</tr>
