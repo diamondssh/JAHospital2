@@ -23,8 +23,7 @@
 			select
 			nvl(max(rno),0) +1 from replyboard
 		</selectKey>
-		insert into replyboard values(#{rno}, #{bno}, #{replytext},
-		#{replyer}, sysdate, sysdate, 'n')
+		insert into replyboard values(#{rno}, #{bno}, #{replytext}, #{replyer}, sysdate, sysdate, 'n')
 	</insert>
 	<update id="delete" parameterType="int">
 		update replyboard set del='y'
